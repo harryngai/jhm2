@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20241116 - Lesson</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100%;
+      background-color: #1E1E1E;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Container to maintain the aspect ratio */
+    .slide-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    /* Maintain a 16:9 aspect ratio */
+    .slide {
+      position: relative;
+      max-width: 100vw; /* Ensures it never overflows horizontally */
+      max-height: 100vh; /* Ensures it never overflows vertically */
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      overflow: hidden;
+      display: none;
+    }
+
+    .slide-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+      overflow-y: auto; /* In case of overflow, allow scrolling */
+    }
+
+    .active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Title and text styles */
+    .slide-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #ffd700;
+    }
+
+    .slide-content p, .slide-content ul {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      text-align: left;
+      margin: 20px 0;
+    }
+
+    .slide-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .slide-content ul li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 10px;
+    }
+
+    .slide-content ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 2rem;
+      color: #ffd700;
+    }
+
+    /* Code block styles */
+    .slide-content code {
+      display: block;
+      background-color: #333;
+      color: #ffd700;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 20px 0;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+
+    /* Navigation buttons */
+    .navigation {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .navigation button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #ffd700;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .navigation button:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+    }
+
+    .navigation button:hover:not(:disabled) {
+      background-color: #ffcc00;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Adjustments for portrait mode */
+    @media (orientation: portrait) {
+      .slide {
+        max-width: 90vw; /* Slightly smaller width in portrait mode */
+        max-height: 90vh; /* Adjust to ensure it fits vertically */
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    /* Mobile-friendly adjustments */
+    @media (max-width: 768px) {
+      .slide-content {
+        padding: 20px;
+      }
+
+      .slide-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .slide-content p, .slide-content ul {
+        font-size: 1.2rem;
+      }
+
+      .slide-content code {
+        font-size: 1rem;
+      }
+
+      .navigation button {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Container for maintaining the aspect ratio -->
+  <div class="slide-container">
+    <!-- Slide 1: Agenda -->
+    <div class="slide active">
+      <div class="slide-content">
+        <h1>Agenda</h1>
+        <ul>
+          <li>什麼是程式設計 (Programming) 和演算法 (Algorithm)?</li>
+          <li>Python 介紹</li>
+          <li>GitHub 介紹</li>
+          <li>VS Code 介紹</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 2: What is Programming -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>什麼是程式設計 (Programming)?</h1>
+        <p>程式設計 (Programming) 是通過編寫程式碼來解決問題或執行特定任務的過程。</p>
+        <p>它包括設計邏輯，並使用程式語言 (Programming Languages) 編寫指令，計算機會根據這些指令來執行操作。</p>
+        <p>程式設計的目標是讓計算機自動完成重複性或複雜的任務。</p>
+      </div>
+    </div>
+
+    <!-- Slide 3: What is Algorithm -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>什麼是演算法 (Algorithm)?</h1>
+        <p>演算法 (Algorithm) 是解決問題的系統化步驟或規則集。</p>
+        <p>它可以用來處理數據、解決數學問題、或控制程式的流程。</p>
+        <p>一個好的演算法應該具有正確性 (Correctness) 和效率 (Efficiency)。</p>
+      </div>
+    </div>
+
+    <!-- Slide 4: Programming & Algorithm Relationship -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>程式設計與演算法的關聯</h1>
+        <p>程式設計是將演算法轉化為程式碼的過程。</p>
+        <p>演算法只是理論上的步驟，而程式則是實際運行的程式碼。</p>
+        <p>程式設計和演算法是相輔相成的。</p>
+      </div>
+    </div>
+
+    <!-- Slide 5: What is Python -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>什麼是 Python?</h1>
+        <p>Python 是一種高階、直譯式程式語言。由 Guido van Rossum 在 1991 年創建。</p>
+        <p>它以易讀性、多功能性和跨平台性著稱，是初學者和專業開發者的首選。</p>
+      </div>
+    </div>
+
+    <!-- Slide 6: Why Learn Python -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>為什麼學習 Python?</h1>
+        <ul>
+          <li>易於學習: 語法簡單，類似於英文。</li>
+          <li>龐大的社群: 擁有豐富的支持和資源。</li>
+          <li>庫和框架: 適用於網頁開發、數據科學、自動化等。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 7: Python Syntax Example -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>Python 基本語法 (範例)</h1>
+        <code>
+          # 這是一個註解<br>
+          print("Hello, World!")<br><br>
+          name = "Alice"<br>
+          age = 30<br>
+          print(f"姓名: {name}, 年齡: {age}")<br><br>
+          if age > 18:<br>
+          &nbsp;&nbsp;print("你是成年人。")<br>
+          else:<br>
+          &nbsp;&nbsp;print("你是未成年人。")
+        </code>
+      </div>
+    </div>
+
+    <!-- Slide 8: What is GitHub -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>什麼是 GitHub?</h1>
+        <p>GitHub 是一個基於 Git 的版本控制與協作平台。</p>
+        <p>它允許開發者託管程式碼倉庫，進行協作開發，並跟蹤程式碼變更。</p>
+      </div>
+    </div>
+
+    <!-- Slide 9: GitHub Workflow -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>GitHub 基本工作流程</h1>
+        <ul>
+          <li>創建倉庫 (Repository)</li>
+          <li>克隆倉庫 (Clone the Repository)</li>
+          <li>進行更改 (Make Changes)</li>
+          <li>提交更改 (Commit the Changes)</li>
+          <li>推送更改 (Push the Changes)</li>
+          <li>拉取請求 (Pull Requests)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 10: What is VS Code -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>什麼是 VS Code?</h1>
+        <p>Visual Studio Code (VS Code) 是由微軟開發的免費、開源的程式碼編輯器。</p>
+        <p>它以輕量但功能強大、擴展性好、跨平台等特性著稱。</p>
+      </div>
+    </div>
+
+    <!-- Slide 11: Setting Up Python in VS Code -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>在 VS Code 中設置 Python</h1>
+        <ul>
+          <li>從 code.visualstudio.com 安裝 VS Code。</li>
+          <li>安裝 Python 擴展 (Python Extension)。</li>
+          <li>配置 Python 解釋器 (Interpreter)。</li>
+          <li>創建 Python 文件並開始編碼！</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 12: Summary -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>總結</h1>
+        <p>程式設計是解決問題並控制計算機行為的核心技術。</p>
+        <p>Python 是多功能且易於入門的程式語言。GitHub 和 VS Code 是現代開發的必備工具。</p>
+        <p>開始探索，享受程式設計的樂趣吧！</p>
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="navigation">
+      <button id="prev" disabled>上一頁</button>
+      <button id="next">下一頁</button>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+
+    function showSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      prevButton.disabled = currentSlide === 0;
+      nextButton.disabled = currentSlide === slides.length - 1;
+    }
+
+    prevButton.addEventListener('click', () => {
+      if (currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentSlide < slides.length - 1) {
+        showSlide(currentSlide + 1);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+        showSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
