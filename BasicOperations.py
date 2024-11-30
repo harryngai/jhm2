@@ -26,6 +26,9 @@ is_true = True      # 布爾值 (Boolean)
 
 # 字符串 (String)
 text = "Python"     # 字符串示例
+text = 'Python'     # 字符串示例
+text = '''Python'''     # 字符串示例
+text = """Python"""     # 字符串示例
 
 # 數字型 (Numbers)
 integer_num = 10    # 整數 (Integer)
