@@ -78,3 +78,4 @@ print(filtered_df)
 # 計算平均工資
 average_salary = df['Salary'].mean()
 print(f"\n平均工資: {average_salary}")
+
