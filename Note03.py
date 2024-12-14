@@ -16,7 +16,7 @@ else:
 sum = 0
 i = 1
 while i <= 10:  # 當i小於等於10時持續執行
-    sum += i # sum = sum + 1
+    sum += i # sum = sum + i
     i += 1  # 記得更新計數器，否則會無限循環 | i = i + 1
 
 # for循環：已知循環次數時使用
