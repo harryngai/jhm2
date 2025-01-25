@@ -109,9 +109,7 @@ def main():
             print(f"未找到 {plain_file}，請建立包含 API 金鑰的設定檔。")
             # 建立一個範例設定檔
             example_config = {
-                "api_key": "your_api_key_here",
-                "database_url": "postgresql://user:password@localhost:5432/mydatabase",
-                "debug": True
+                "api_key": "your_api_key_config_json"
             }
             with open(plain_file, "w") as f:
                 json.dump(example_config, f, indent=4)
